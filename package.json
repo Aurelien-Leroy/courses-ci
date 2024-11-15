@@ -26,6 +26,9 @@
     "extends": [
       "eslint:recommended",
       "plugin:jest/recommended"
-    ]
+    ],
+    "rules": {
+      "constructor-super": "off" 
+    }
   }
 }
