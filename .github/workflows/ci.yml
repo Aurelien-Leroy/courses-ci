@@ -14,17 +14,14 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      
-      - name: Set up Node.js
+
+      - name: Set up Node.js (version 18 recommandée)
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
-      
-      - name: Install dependencies
-        run: npm install
+          node-version: '18'  # Essayez Node.js 18 pour la compatibilité avec certaines fonctionnalités
 
-       - name: Run ESLint
-        run: npx eslint .
+      - name: Install dependencies (npm ci pour une installation propre)
+        run: npm ci
 
   build_and_test:
     runs-on: ubuntu-latest
@@ -33,14 +30,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
+      - name: Set up Node.js (version 18 recommandée)
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '18'
 
       - name: Fix permissions for Jest
         run: chmod -R +x node_modules/.bin
-      
+
       - name: Run tests
         run: npm test
 
@@ -51,19 +48,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
+      - name: Set up Node.js (version 18 recommandée)
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '18'
 
-      - name: Install ESLint
-        run: npm install eslint --save-dev
+      - name: Install ESLint (npm ci pour une installation propre)
+        run: npm ci
 
       - name: Fix permissions for ESLint
         run: chmod -R +x node_modules/.bin
 
       - name: Run ESLint
-        run: npx eslint .
+        run: npx eslint .  # Exécuter ESLint pour valider le code
 
   deploy:
     runs-on: ubuntu-latest
@@ -72,10 +69,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
+      - name: Set up Node.js (version 18 recommandée)
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '18'
 
       - name: Deploy to production
         run: |
