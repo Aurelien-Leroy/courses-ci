@@ -17,15 +17,31 @@
     "jest": "^29.7.0"
   },
   "eslintConfig": {
-    "env": {
-      "jest/globals": true
-    },
-    "plugins": [
-      "jest"
-    ],
-    "extends": ["eslint:recommended", "plugin:jest/recommended"],
-    "rules": {
-      "constructor-super": "off"
-  }
+      "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true,
+        "jest": true  
+      },
+      "extends": [
+        "eslint:recommended",
+        "plugin:jest/recommended"  
+      ],
+      "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+      },
+      "ignorePatterns": [
+        "tests/*",  
+        "node_modules/*"  
+      ],
+      "rules": {
+        "no-unused-vars": ["warn", { "vars": "all", "args": "none" }],  
+        "no-undef": "error",  
+        "no-console": "warn",  
+        "no-debugger": "warn"  
+      }
+    }
+    
 }
-}
+
