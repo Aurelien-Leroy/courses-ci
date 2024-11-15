@@ -30,14 +30,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-
-      - name: Fix permissions for Jest
-        run: chmod -R +x node_modules/.bin
-      
       - name: Run tests
         run: npm test
 
@@ -48,14 +40,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-
-      - name: Install ESLint
-        run: npm install eslint --save-dev
-
       - name: Run ESLint
         run: npx eslint .
 
@@ -65,11 +49,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'
 
       - name: Deploy to production
         run: |
