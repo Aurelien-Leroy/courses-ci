@@ -9,6 +9,7 @@ on:
       - main
 
 jobs:
+  # Job pour l'installation des dépendances
   pre_install:
     runs-on: ubuntu-latest
     steps:
@@ -19,10 +20,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '16'
-      
+
       - name: Install dependencies
         run: npm install
 
+  # Job pour le build et les tests
   build_and_test:
     runs-on: ubuntu-latest
     needs: pre_install
@@ -30,9 +32,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
       - name: Run tests
         run: npm test
 
+  # Job pour valider le code avec ESLint
   validate:
     runs-on: ubuntu-latest
     needs: build_and_test
@@ -40,9 +48,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Run ESLint
-        run: npx eslint .
+      - name: Install dependencies
+        run: npm install
 
+      - name: Run ESLint
+        run: npx eslint . --debug # Utilisation de l'option --debug pour plus de détails en cas d'erreur
+
+  # Job de déploiement en production
   deploy:
     runs-on: ubuntu-latest
     needs: validate
@@ -50,10 +62,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
       - name: Deploy to production
         run: |
-          echo "Deploying to production..."
+          echo "Deploying to production..." # Remplacer par la logique de déploiement réelle
 
+  # Job pour les tâches après déploiement
   post_deploy:
     runs-on: ubuntu-latest
     needs: deploy
@@ -63,4 +81,4 @@ jobs:
 
       - name: Run post-deploy tasks
         run: |
-          echo "Running post-deploy tasks..."
+          echo "Running post-deploy tasks..." # Remplacer par la logique des tâches post-déploiement
