@@ -9,23 +9,26 @@ on:
       - main
 
 jobs:
-  # Stage 1: Build and Test (parallèle)
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '16'
-      
+
       - name: Install dependencies
         run: npm install
 
+      - name: Fix Jest permissions
+        run: chmod -R +x node_modules/.bin
+
       - name: Run tests
         run: npm test
+
 
   # Stage 2: Deploy (séquentiel, dépend du succès du job "build")
   deploy:
