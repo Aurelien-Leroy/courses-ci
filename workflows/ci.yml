@@ -1,6 +1,5 @@
 name: CI Pipeline
 
-# Déclenchements sur les événements push ou pull_request vers la branche 'main'
 on:
   push:
     branches:
@@ -12,27 +11,26 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3  # Cette action clone le dépôt sur l'environnement virtuel
+      uses: actions/checkout@v3
 
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '16'  # Remplacez par la version de Node.js que vous utilisez
+        node-version: '16'
 
     - name: Install dependencies
-      run: npm install  # Cette commande installe les dépendances définies dans package.json
+      run: npm install
 
     - name: Run tests
-      run: npm test  # Cette commande exécute vos tests (modifiez si nécessaire)
+      run: npm test
 
     - name: Build project
-      run: npm run build  # Cette commande construit votre projet (adaptez si nécessaire)
+      run: npm run build
 
-    - name: Deploy (optionnel)
-      if: github.ref == 'refs/heads/main'  # Déployer uniquement sur la branche main
+    - name: Deploy (optional)
+      if: github.ref == 'refs/heads/main'
       run: |
-        echo "Déploiement en production"
-        # Remplacez par la commande de déploiement de votre choix
+        echo "Deploying to production..."
