@@ -53,11 +53,14 @@ jobs:
         with:
           node-version: '16'
 
+      - name: Install ESLint
+        run: npm install eslint --save-dev
+
       - name: Fix permissions for ESLint
         run: chmod -R +x node_modules/.bin
 
       - name: Run ESLint (linting)
-        run: npm run lint  # Utilisez la commande correcte pour exécuter ESLint
+        run: npm eslint  # Exécute la commande lint définie dans package.json
         continue-on-error: false  # Si lint échoue, le pipeline échoue aussi
 
   deploy:
@@ -83,4 +86,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Run
+      - name: Run post-deploy tasks
+        run: |
+          echo "Running post-deploy tasks..."
