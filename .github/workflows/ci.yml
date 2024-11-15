@@ -48,14 +48,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-    - name: Install dependencies
-      run: npm install
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
 
-    - name: Install ESLint globally
-      run: npm install -g eslint
+      - name: Install ESLint
+        run: npm install eslint --save-dev
 
-    - name: Run ESLint
-      run: eslint . --debug
+      - name: Fix permissions for ESLint
+        run: chmod -R +x node_modules/.bin
+
+      - name: Run ESLint
+        run: npx eslint .
 
   deploy:
     runs-on: ubuntu-latest
