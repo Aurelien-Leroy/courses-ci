@@ -23,12 +23,9 @@
     "plugins": [
       "jest"
     ],
-    "extends": [
-      "eslint:recommended",
-      "plugin:jest/recommended"
-    ],
+    "extends": ["eslint:recommended", "plugin:jest/recommended"],
     "rules": {
-      "constructor-super": "off" 
-    }
+      "constructor-super": "off"
   }
+}
 }
