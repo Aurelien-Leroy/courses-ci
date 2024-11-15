@@ -23,35 +23,32 @@ jobs:
       - name: Install dependencies (npm ci pour une installation propre)
         run: npm ci
 
-  build_and_test:
+  unit-test:
     runs-on: ubuntu-latest
-    needs: pre_install
+    needs: pre_install  # Ce job dépend du job "pre_install" pour avoir les dépendances installées
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
+      - name: Set up Node.js (version 18 recommandée)
         uses: actions/setup-node@v3
         with:
-          node-version: '18'  # Assurez-vous de la cohérence de la version de Node.js
+          node-version: '18'
 
-      - name: Install Vitest as dev dependency
+      - name: Install Vitest
         run: npm install -D vitest
 
-      - name: Fix permissions for Jest
-        run: chmod -R +x node_modules/.bin
-
       - name: Run tests with Vitest
-        run: npm test  # Exécute les tests avec Vitest
+        run: npm test  # Exécute les tests unitaires avec Vitest
 
   validate:
     runs-on: ubuntu-latest
-    needs: build_and_test
+    needs: unit-test  # Ce job dépend maintenant de "unit-test"
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
+      - name: Set up Node.js (version 18 recommandée)
         uses: actions/setup-node@v3
         with:
           node-version: '18'
@@ -67,12 +64,12 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: validate
+    needs: validate  # Ce job dépend maintenant de "validate"
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
+      - name: Set up Node.js (version 18 recommandée)
         uses: actions/setup-node@v3
         with:
           node-version: '18'
@@ -83,7 +80,7 @@ jobs:
 
   post_deploy:
     runs-on: ubuntu-latest
-    needs: deploy
+    needs: deploy  # Ce job dépend de "deploy"
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
