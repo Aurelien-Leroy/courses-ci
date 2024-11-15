@@ -18,7 +18,7 @@ jobs:
       - name: Set up Node.js (version 18 recommandée)
         uses: actions/setup-node@v3
         with:
-          node-version: '18'  # Essayez Node.js 18 pour la compatibilité avec certaines fonctionnalités
+          node-version: '18'
 
       - name: Install dependencies (npm ci pour une installation propre)
         run: npm ci
@@ -87,4 +87,4 @@ jobs:
 
       - name: Run post-deploy tasks
         run: |
-          echo "Running post-deploy tasks.."
+          echo "Running post-deploy tasks..."
