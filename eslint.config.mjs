@@ -1,16 +1,20 @@
 // eslint.config.mjs
-export default {
-  extends: ["eslint:recommended"],
-  env: {
-    node: true,
-    es2021: true, // Veuillez vérifier la version de Node que vous utilisez (par exemple, es2021)
+import { defineConfig } from 'eslint';
+
+export default defineConfig([
+  {
+    // Définition des environnements
+    env: {
+      node: true,
+      es2021: true, // Spécifiez la version d'ES6 si vous utilisez Node.js 14 ou plus récent
+    },
+    parserOptions: {
+      ecmaVersion: 2021, // Assurez-vous que cette version est correcte
+    },
+    rules: {
+      // Vos règles personnalisées
+      'constructor-super': 'off',  // Désactivez la règle qui pose problème
+      // Autres règles...
+    }
   },
-  parserOptions: {
-    ecmaVersion: 2021, // Assurez-vous que votre ECMAScript version est bien définie pour éviter des erreurs de syntaxe.
-  },
-  rules: {
-    "constructor-super": "off",  // Désactive la règle "constructor-super"
-    "no-undef": "off",           // Désactive les erreurs de variables non définies, si nécessaire
-    // Ajoutez ici d'autres règles que vous souhaitez ajuster ou désactiver
-  },
-};
+]);
