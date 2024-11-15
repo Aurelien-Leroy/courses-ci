@@ -51,10 +51,10 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
-
-      - name: Install ESLint
-        run: npm install eslint --save-dev
+          node-version: '18'
+          
+      - name: Install ESLint (npm ci pour une installation propre)
+        run: npm ci
 
       - name: Fix permissions for ESLint
         run: chmod -R +x node_modules/.bin
