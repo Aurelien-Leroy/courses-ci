@@ -60,7 +60,7 @@ jobs:
         run: chmod -R +x node_modules/.bin
 
       - name: Run ESLint (linting)
-        run: npm run lint  # Exécute la commande lint définie dans package.json
+        run: npx eslint .
         continue-on-error: false  # Si lint échoue, le pipeline échoue aussi
 
   deploy:
