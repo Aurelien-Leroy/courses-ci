@@ -36,7 +36,7 @@ jobs:
           node-version: '16'
 
       - name: Fix permissions for Jest
-        run: chmod -R +x node_modules/.bin  # Cette ligne donne les permissions d'exécution pour tous les binaires dans node_modules/.bin
+        run: chmod -R +x node_modules/.bin
       
       - name: Run tests
         run: npm test
@@ -57,7 +57,7 @@ jobs:
         run: npm install eslint --save-dev
 
       - name: Fix permissions for ESLint
-        run: chmod -R +x node_modules/.bin  # Ajout de la ligne pour donner les permissions d'exécution
+        run: chmod -R +x node_modules/.bin
 
       - name: Run ESLint
         run: npx eslint .
@@ -87,4 +87,4 @@ jobs:
 
       - name: Run post-deploy tasks
         run: |
-          echo "Running post-deploy tasks.."
+          echo "Running post-deploy tasks..."
