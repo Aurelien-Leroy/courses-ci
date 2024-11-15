@@ -53,6 +53,7 @@
           "args": "none"
         }
       ],
+      "constructor-super": "error",
       "no-undef": "error",
       "no-console": [
         "error",
