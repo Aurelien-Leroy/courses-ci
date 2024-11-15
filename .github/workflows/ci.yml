@@ -53,14 +53,11 @@ jobs:
         with:
           node-version: '16'
 
-      - name: Install ESLint
-        run: npm install eslint --save-dev
-
       - name: Fix permissions for ESLint
         run: chmod -R +x node_modules/.bin
 
       - name: Run ESLint (linting)
-        run: npm eslint  # Exécute la commande lint définie dans package.json
+        run: npm run lint  # Exécute la commande correcte pour ESLint
         continue-on-error: false  # Si lint échoue, le pipeline échoue aussi
 
   deploy:
