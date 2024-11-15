@@ -9,19 +9,22 @@ on:
       - main
 
 jobs:
-  pre_install:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
-      - name: Set up Node.js (version 18 recommandée)
+      
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
-
-      - name: Install dependencies (npm ci pour une installation propre)
-        run: npm ci
+          node-version: '16'  # ou la version de Node.js que vous utilisez
+      
+      - name: Install dependencies
+        run: npm install  # Assurez-vous que les dépendances sont installées ici
+      
+      - name: Run lint
+        run: npm run lint  # Exécute la commande lint après l'installation
         
   build_and_test:
     runs-on: ubuntu-latest
