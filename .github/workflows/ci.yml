@@ -59,8 +59,8 @@ jobs:
       - name: Fix permissions for ESLint
         run: chmod -R +x node_modules/.bin
 
-      - name: Run ESLint
-        run: npx eslint .  # Exécuter ESLint pour valider le code
+      - name: Run lint (utiliser le script npm run lint)
+        run: npm run lint  # Exécute la commande définie dans "lint" dans package.json
 
   deploy:
     runs-on: ubuntu-latest
@@ -87,4 +87,4 @@ jobs:
 
       - name: Run post-deploy tasks
         run: |
-          echo "Running post-deploy tasks.."
+          echo "Running post-deploy tasks..."
