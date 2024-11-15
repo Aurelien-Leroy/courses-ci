@@ -1,18 +1,18 @@
-import globals from 'globals';
-import pluginJs from '@eslint/js';
-
-/** @type {import('eslint').Linter.Config[]} */
-export default [
+module.exports = [
   {
     files: ['**/*.js'],
     languageOptions: {
       sourceType: 'commonjs',
+      ecmaVersion: 2021, // Assurez-vous d'utiliser une version compatible d'ECMAScript
+    },
+    rules: {
+      'constructor-super': 'off',
     },
   },
   {
     languageOptions: {
-      globals: globals.browser,
+      globals: require('globals').browser,
     },
   },
-  pluginJs.configs.recommended,
+  require('@eslint/js').configs.recommended,
 ];
