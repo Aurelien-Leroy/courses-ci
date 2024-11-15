@@ -48,9 +48,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Validate build artifacts
-        run: |
-          echo "Validating build artifacts..."
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install ESLint
+        run: npm install eslint --save-dev
+
+      - name: Run ESLint
+        run: npx eslint .
 
   deploy:
     runs-on: ubuntu-latest
